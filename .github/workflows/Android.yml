@@ -16,6 +16,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      # Install Haxe
+      - name: Install Haxe
+        run: |
+          # Download and install Haxe
+          sudo apt-get update
+          sudo apt-get install haxe -y
+          haxe --version  # Verify Haxe installation
       
       # Upgrade Haxe to the latest version (4.2.4)
       - name: Upgrade Haxe
