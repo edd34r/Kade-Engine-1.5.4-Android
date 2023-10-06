@@ -16,10 +16,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: krdlab/setup-haxe@v1
-        with:
-          haxe-version: 4.2.3
-          
+      
+      # Upgrade Haxe to the latest version (4.2.4)
+      - name: Upgrade Haxe
+        run: haxelib install haxe 4.2.4
+        
       - name: Cache haxelib path
         uses: actions/cache@v2
         with:
@@ -40,25 +41,26 @@ jobs:
         with:
           ndk-version: r15c
       
-      # Agrega el paso de actualización de haxelib aquí
+      # Add the Update haxelib step
       - name: Update haxelib
         run: haxelib --global update haxelib
 
-      # Agrega el paso de instalación de lime
+      # Install Lime
       - name: Install Lime
         run: haxelib install lime 7.9.0 --quiet
 
-      # Agrega el paso de verificación de la instalación de lime
+      # Verify Lime Installation
       - name: Verify Lime Installation
         run: haxelib list
 
-      # Runs a set of commands using the runners shell
-      - name: script run line haha
+      # Configure %HAXELIB_ROOT%
+      - name: Configure %HAXELIB_ROOT%
         run: |
           mkdir -p "%HAXELIB_ROOT%"
           haxelib setup "%HAXELIB_ROOT%"
-          # Resto de tus comandos haxelib aquí
           
+      # Rest of your haxelib commands here
+
       - name: Build Log
         run: |
           haxelib run lime setup android
