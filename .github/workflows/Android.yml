@@ -17,6 +17,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # Install Haxe
+      - name: Install Haxe
+        run: |
+          # Download and install Haxe
+          sudo apt-get update
+          sudo apt-get install haxe -y
+          haxe --version  # Verify Haxe installation
+      
       # Configure haxelib
       - name: Configure haxelib
         run: haxelib setup
