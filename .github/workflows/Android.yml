@@ -39,31 +39,17 @@ jobs:
       - uses: nttld/setup-ndk@v1
         with:
           ndk-version: r15c
+      
+      # Agrega el paso de actualización de haxelib aquí
+      - name: Update haxelib
+        run: haxelib --global update haxelib
 
       # Runs a set of commands using the runners shell
       - name: script run line haha
         run: |
           mkdir -p "%HAXELIB_ROOT%"
           haxelib setup "%HAXELIB_ROOT%"
-          haxelib install lime 7.9.0 --quiet
-          haxelib install openfl --quiet
-          haxelib install flixel 4.9.0 --quiet
-          haxelib install hxcpp --quiet
-          haxelib run lime setup
-          haxelib run lime config ANDROID_SDK $ANDROID_SDK_ROOT
-          haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_ROOT
-          haxelib run lime config JAVA_HOME $JAVA_HOME
-          haxelib run lime config ANDROID_SETUP true
-          haxelib install flixel-tools --quiet
-          haxelib install flixel-ui --quiet
-          haxelib install flixel-addons 2.10.0 --quiet
-          haxelib install hscript --quiet
-          haxelib git faxe https://github.com/uhrobots/faxe --quiet
-          haxelib git polymod https://github.com/MasterEric/polymod.git --quiet
-          haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc --quiet
-          haxelib git extension-webm https://github.com/jigsaw-4277821/extension-webm --quiet
-          haxelib install actuate 
-          haxelib list
+          # Resto de tus comandos haxelib aquí
           
       - name: Build Log
         run: |
